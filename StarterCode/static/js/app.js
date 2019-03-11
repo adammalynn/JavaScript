@@ -56,7 +56,7 @@ filterbtn.on("click", function() {
  
   // var filteredDate = tdata.filter(filData => filData.datetime === inputValue);
   // console.log(filteredDate);
-  var filteredOption = tdata.filter(filData => (filData.datetime === inputValue) && (filData.city === inputCalue) );
+  // var filteredOption = tdata.filter(filData => (filData.datetime === inputValue) && (filData.city === inputCalue) );
 
   // var filteredOption =  tdata.filter(filData => ((filData.datetime === inputValue) && inputValue != " "));  
   //     filteredOption =  tdata.filter(filData => ((filData.city === inputCalue) && inputCalue != " ")); 
@@ -64,7 +64,7 @@ filterbtn.on("click", function() {
   //     filteredOption =  tdata.filter(filData => ((filData.country === inputCoalue) && inputCoalue != " "));
   //     filteredOption =  tdata.filter(filData => ((filData.shape === inputShalue) && inputShalue != " "));
   
-      
+  var filteredOption = tdata.filter(filData => (filData.datetime == inputValue) || (filData.city == inputCalue) || (filData.state === inputSalue) || (filData.country === inputCoalue) || (filData.shape === inputShalue));    
 
 loadTable(filteredOption);
  
@@ -74,7 +74,7 @@ loadTable(filteredOption);
 
 
 
-  
+
 
 
 
