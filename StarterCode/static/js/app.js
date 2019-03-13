@@ -12,7 +12,7 @@ var tbody = d3.select("tbody");
 var output = d3.select(".table");
 
 // Use d3 to update each cell's text with the ufo report,
-// Values should be for (date, city, state, country, shape, duration, comments)
+// Values are for (date, city, state, country, shape, duration, comments)
 function loadTable(ufoData) {
   // First, clear out any existing data
   tbody.html("");
@@ -27,10 +27,8 @@ function loadTable(ufoData) {
 loadTable(tdata);
 
 
-
 // Select the submit button
 var filterbtn = d3.select("#filter-btn");
-
 
 filterbtn.on("click", function() {
 
@@ -41,7 +39,7 @@ filterbtn.on("click", function() {
   var inputDate = d3.select("#datetime");
   var inputCity = d3.select("#city");
   var inputState = d3.select("#state");
-  var inputCountry = d3.select("#country");
+  // var inputCountry = d3.select("#country");
   var inputShape = d3.select("#shape");
   var satisfied = true;
 
@@ -49,25 +47,25 @@ filterbtn.on("click", function() {
   var inputValue = inputDate.property("value");
   var inputCalue = inputCity.property("value");
   var inputSalue = inputState.property("value");
-  var inputCoalue = inputCountry.property("value");
+  // var inputCoalue = inputCountry.property("value");
   var inputShalue = inputShape.property("value");
 
-  // console.log(inputValue);
+
+  // First, clear out any existing data
+  tbody.html("");
+
+  // Condition to filter for each input one at a time. (no current need to filter by usa except if another country data is joined to this)
+  var filteredOption = tdata.filter(filData => (filData.datetime === inputValue) || (filData.city === inputCalue) || (filData.state === inputSalue) || (filData.shape === inputShalue));    
+
+  // // This filters all or any at once
+  // var filteredOption =  tdata.filter(filData => ((filData.datetime === inputValue) || inputValue == ""));  
+  //     filteredOption =  filteredOption.filter(filData => ((filData.city === inputCalue) || inputCalue == "")); 
+  //     filteredOption =  filteredOption.filter(filData => ((filData.state === inputSalue) || inputSalue == "")); 
+  //     filteredOption =  filteredOption.filter(filData => ((filData.shape === inputShalue) || inputShalue == ""));
+
  
-  // var filteredDate = tdata.filter(filData => filData.datetime === inputValue);
-  // console.log(filteredDate);
-  // var filteredOption = tdata.filter(filData => (filData.datetime === inputValue) && (filData.city === inputCalue) );
-
-  // var filteredOption =  tdata.filter(filData => ((filData.datetime === inputValue) && inputValue != " "));  
-  //     filteredOption =  tdata.filter(filData => ((filData.city === inputCalue) && inputCalue != " ")); 
-  //     filteredOption =  tdata.filter(filData => ((filData.state === inputSalue) && inputSalue != " ")); 
-  //     filteredOption =  tdata.filter(filData => ((filData.country === inputCoalue) && inputCoalue != " "));
-  //     filteredOption =  tdata.filter(filData => ((filData.shape === inputShalue) && inputShalue != " "));
-  
-  var filteredOption = tdata.filter(filData => (filData.datetime == inputValue) || (filData.city == inputCalue) || (filData.state === inputSalue) || (filData.country === inputCoalue) || (filData.shape === inputShalue));    
-
 loadTable(filteredOption);
- 
+
 });
 
 
